@@ -1,0 +1,65 @@
+{
+    "Ontologies":{
+		"GO":{
+			"Path":"C:/Users/Admin/Desktop/ontology.owl",
+			"Prefix":"http://purl.obolibrary.org/obo/"}
+		},
+		 
+	"Similarity Settings":{
+		
+		"ID1":{
+			"Groupwise":"BMA",
+			"Pairwise": "Resnik1995",
+			"IC":"Seco2004"
+			},
+
+		"ID2":{
+			"Groupwise":"BMA",
+			"Pairwise": "Resnik1995",
+			"IC":"Resnik1995"
+			},		
+		
+		"ID3":{
+			"Groupwise": "simGIC",
+			"IC":"Seco2004"
+			},
+
+		"ID4":{
+			"Groupwise":"simGIC",
+			"IC":"Resnik1995"
+			},
+			
+		"ID5":{
+			"Groupwise":"MAX",
+			"Pairwise": "Resnik1995",
+			"IC":"Seco2004"
+			},
+
+		"ID6":{
+			"Groupwise":"MAX",
+			"Pairwise": "Resnik1995",
+			"IC":"Resnik1995"
+			}				
+	
+	},
+	
+	
+	"Object_Data":"C:/Users/Admin/Desktop/Annotations_HPO.tsv",
+	
+	
+	"Queries":{
+	
+		"Q1":{
+			"Path":"C:/Users/Admin/Desktop/Gene-DiseaseAnnotations.tsv",
+			"SSM_ID":"ID1,ID2,ID3,ID4,ID5,ID6",
+			"Results":"C:/Users/Admin/Desktop/Results_geneDisease.csv"
+		},
+		"Q2":{
+			"Path":"C:/Users/Admin/Desktop/Negative_Gene-DiseaseAnnotations.tsv",
+				"SSM_ID":"ID1,ID2,ID3,ID4,ID5,ID6",
+				"Results":"C:/Users/Admin/Desktop/NegativeResults_geneDisease.csv"
+			
+		}
+		
+	}
+}
