@@ -1,1 +1,1 @@
-# KGE_Predictions_GD
+# Predicting Gene-Disease Associations with Knowledge Graph Embeddings over Multiple Ontologies
