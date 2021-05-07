@@ -1,6 +1,6 @@
 '''
     File name: Run_RDF2Vec_Embeddings.txt
-    Author: Susana Nunes, Rita T. Sousa, Catia Pesquita
+    Authors: Susana Nunes, Rita T. Sousa, Catia Pesquita
     Python Version: 3.7
     OPA2vec implementation in  https://github.com/bio-ontology-research-group/opa2vec
 '''
