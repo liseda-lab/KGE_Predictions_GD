@@ -7,7 +7,8 @@
     -sequences generated using the Weisfeiler-Lehman algorithm
     -walks depth 8
     -limited number of 500
-    -corpora of sequences were used to build a Skip-Gram model with the default parameters.
+    -corpora of sequences were used to build a Skip-Gram model with the default parameters
+    - 200 features
 '''
 
 import numpy
