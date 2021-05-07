@@ -1,4 +1,9 @@
+IN CONSTRUCTION ....
+
 # Predicting Gene-Disease Associations with Knowledge Graph Embeddings over Multiple Ontologies
+
+This repository provides a implementation described in the short paper: -link arXiv
+
 
 
 TransE and DistMult implementation in https://github.com/thunlp/OpenKE with default parameters.
