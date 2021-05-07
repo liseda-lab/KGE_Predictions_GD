@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+'''
+    File name: Threshold_Baseline.txt
+    Authors: Susana Nunes, Rita T. Sousa, Catia Pesquita
+    Python Version: 3.7
+'''
 import numpy as np
 from sklearn import metrics
 from operator import itemgetter
@@ -145,7 +150,7 @@ def performance_baseline(X_train, X_test, y_train, y_test, index_SS):
 measures_names = ('BMA_Seco2004', 'BMA_Resnik1995', 'simGIC_Seco2004',
                   'simGIC_Resnik1995', 'MAX_Seco2004', 'MAX_Resnik1995')
 
-file_data = 'SSM_data.csv'
+file_data = 'SSMC_output.csv'
 
 for measure in range(0, 6):  # measure used
     Xtrain, Ytrain = create_X_and_Y_lists(file_data,
