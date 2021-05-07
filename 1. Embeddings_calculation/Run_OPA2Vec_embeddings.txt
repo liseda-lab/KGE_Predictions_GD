@@ -1,0 +1,9 @@
+'''
+    File name: Run_RDF2Vec_Embeddings.txt
+    Author: Susana Nunes, Rita T. Sousa, Catia Pesquita
+    Python Version: 3.7
+    OPA2vec implementation in  https://github.com/bio-ontology-research-group/opa2vec
+'''
+Run in Command line inside the opa2vec folder:
+
+python3 runOPA2Vec.py -ontology "HPO.owl" -associations "AnnotationsHPO.tsv" -outfile "Opa2vec_embeddings.txt" -embedsize 200  -entities "Entities.txt"
