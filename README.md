@@ -2,7 +2,7 @@ IN CONSTRUCTION ....
 
 # Predicting Gene-Disease Associations with Knowledge Graph Embeddings over Multiple Ontologies
 
-This repository provides a implementation described in the short paper: -link arXiv
+This repository provides a implementation described in the short paper: http://arxiv.org/abs/2105.04944 
 
 
 
