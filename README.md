@@ -55,7 +55,7 @@ The resulting vectors were then the input to four different ML algorithms:
 - Naïve Bayes
 - Multi-Layer Perceptron 
 
-Grid search was employed to obtain optimal parameters for RF, XGB, and MLP. 
+Grid search was employed in __Performance_ML.py__ to obtain optimal parameters for RF, XGB, and MLP. 
 
 
 ## Authors
