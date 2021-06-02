@@ -46,6 +46,7 @@ Each gene-disease pair corresponds to two vectors, g and d, associated with a ge
 - Weighted-L1
 - Weighted-L2 
 
+We measured the cosine similarity between the vectors carrying out the same approach used in the __Baseline__ with a SS threshold.
 
 ## Running Perfomance 
 The resulting vectors were then the input to four different ML algorithms: 
@@ -54,7 +55,7 @@ The resulting vectors were then the input to four different ML algorithms:
 - Naïve Bayes
 - Multi-Layer Perceptron 
 
-Grid search was employed to obtain optimal parameters for RF, XGB, and MLP. We also measured the cosine similarity (CS) between the vectors carrying out the same approach used in the __Baseline__ with a SS threshold.
+Grid search was employed to obtain optimal parameters for RF, XGB, and MLP. 
 
 
 ## Authors
