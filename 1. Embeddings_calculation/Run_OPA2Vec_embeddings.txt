@@ -4,6 +4,8 @@
     Python Version: 3.7
     OPA2vec implementation in  https://github.com/bio-ontology-research-group/opa2vec
 '''
+Download default pre-trained pubmed model and inserted inside opa2vec folder from https://drive.google.com/drive/folders/17X7n5pxYZqG_w09HJCC35gmfUnhVl9PM?usp=sharing
+
 Run in Command line inside the opa2vec folder:
 
 python3 runOPA2Vec.py -ontology "HPO.owl" -associations "AnnotationsHPO.tsv" -outfile "Opa2vec_embeddings.txt" -embedsize 200  -entities "Entities.txt"
