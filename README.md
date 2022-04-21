@@ -61,7 +61,7 @@ Grid search was employed in __Performance_ML.py__ to obtain optimal parameters f
 - __Rita T. Sousa__
 - __Catia Pesquita__
 
-For any comments or help needed with this implementation, please send an email to: snunes@lagise.di.fc.ul.pt
+For any comments or help needed with this implementation, please send an email to: scnunes@fc.ul.pt
 
 ## Acknowledgments
 This work was supported by FCT through LASIGE Research Unit (ref. UIDB/00408/2020 and ref. UIDP/00408/2020. It was also partially supported by the KATY project which has received funding from the European Union’s Horizon 2020 research and innovation program under grant agreement No 101017453.
