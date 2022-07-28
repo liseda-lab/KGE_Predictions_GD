@@ -9,8 +9,8 @@ Ontology-based approaches for predicting gene-disease associations include the m
 __Dataset_Pairs_Label.csv__ has a total of 2716 genes, 1807 diseases, and 8189 disease-genes relations from DisGeNET and 8189 negative samples. GO annotations were downloaded from Gene Ontology Annotation (GOA) database for the human species. HP annotations were downloaded from the HP database, providing links between genes or diseases to HP terms. 
 
 ## Indexes Creation
-- We performed a stratified ten-fold cross-validation being that the same folds and, for each fold, the Weighted Average of F-measures (WAF) of classifications were assessed and reported in the form of a median (Indexes_10Fold folder). 
-- We also performed a stratified 70\% training and 30\% testing split, with the same split being used throughout all experiments, including the baseline (Indexes_70_30_split folder). 
+- We performed a stratified ten-fold cross-validation (Indexes_10Fold folder) being that the same folds and, for each fold, the Weighted Average of F-measures (WAF) of classifications were assessed and reported in the form of a median with __Median-Calculation.py__. 
+- We also performed a stratified 70\% training and 30\% testing split (Indexes_70_30_split folder), with the same split being used throughout all experiments, including the baseline. 
 
 ## Baseline
 Uses the SSMC tool (more details available in https://github.com/liseda-lab/SSMC) and six different semantic similarity measures:
