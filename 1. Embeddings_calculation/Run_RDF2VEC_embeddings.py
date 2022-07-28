@@ -143,6 +143,7 @@ vector_sizes = 200
 n_walks = 500
 types_word2vec = "skip-gram"
 path_output = "Run_"
+#File with one entity per line for instance C00001
 entities_file = "Entities.txt"
 
 def run_embedddings(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
