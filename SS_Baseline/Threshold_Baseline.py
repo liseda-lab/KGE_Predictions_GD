@@ -144,9 +144,6 @@ def performance_baseline(X_train, X_test, y_train, y_test, index_SS):
 ##             RUN PERFORMANCES               ##
 ################################################
 
-# Creation of the partitions and performance files for each measure
-#run_partition('SSM data shuffled.csv', 'Pairs')
-
 measures_names = ('BMA_Seco2004', 'BMA_Resnik1995', 'simGIC_Seco2004',
                   'simGIC_Resnik1995', 'MAX_Seco2004', 'MAX_Resnik1995')
 
