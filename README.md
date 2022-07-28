@@ -4,7 +4,6 @@
 Ontology-based approaches for predicting gene-disease associations include the more classical semantic similarity methods and more recently knowledge graph embeddings. While semantic similarity is typically restricted to hierarchical relations within the ontology, knowledge graph embeddings consider their full breadth. However, embeddings are produced over a single graph and complex tasks such as gene-disease association may require additional ontologies. We investigate the impact of employing richer semantic representations that are based on more than one ontology, able to represent both genes and diseases and consider multiple kinds of relations within the ontologies. Our experiments demonstrate the value of employing knowledge graph embeddings based on random-walks and highlight the need for a closer integration of different ontologies.
 
 - This document provides the implementation described in the **short paper**: http://arxiv.org/abs/2105.04944
-- We also provide the implementatio of other experiments 
 
 ## Dataset and Annotations
 __Dataset_Pairs_Label.csv__ has a total of 2716 genes, 1807 diseases, and 8189 disease-genes relations from DisGeNET and 8189 negative samples. GO annotations were downloaded from Gene Ontology Annotation (GOA) database for the human species. HP annotations were downloaded from the HP database, providing links between genes or diseases to HP terms. 
@@ -58,7 +57,12 @@ The resulting vectors were then the input to four different ML algorithms:
 - Naïve Bayes
 - Multi-Layer Perceptron 
 
-Grid search was employed in __Performance_ML.py__ to obtain optimal parameters for RF, XGB, and MLP. 
+To use the 10-fold cross validation:
+-__Performance_ML_70-30split.py__ 
+To use the 70-30 split:
+-__Performance_ML_10fold.py__
+
+Grid search was employed in both  __Performance_ML_70-30split.py__ and __Performance_ML_10fold.py__ to obtain optimal parameters for RF, XGB, and MLP. 
 
 
 ## Authors
