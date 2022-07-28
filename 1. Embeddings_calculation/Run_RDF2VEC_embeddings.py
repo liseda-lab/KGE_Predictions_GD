@@ -19,15 +19,17 @@ import json
 from pyrdf2vec.graphs import kg
 from pyrdf2vec.rdf2vec import RDF2VecTransformer
 from pyrdf2vec.embedders import Word2Vec
+
 from pyrdf2vec.samplers import UniformSampler
 from pyrdf2vec.walkers import WeisfeilerLehmanWalker
+
 
 
 #################################################
 #####     Create KG with 2 ontologies       #####
 #################################################
 def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                 annotations_2_file_path):
+                 annotations_2_file_path, entities_file):
     Kg = rdflib.Graph()
     Kg.parse(ontology_1_file_path, format='xml')
     Kg.parse(ontology_2_file_path, format='xml')
@@ -38,8 +40,7 @@ def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_
     for annot in file_annot_hpo:
         ent, hpo_term_list = annot[:-1].split('\t')
 
-        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the iri of hpo
-        ents.append(url_ent)
+        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo
 
         for url_hpo_term in hpo_term_list.split(';'):
             Kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
@@ -49,15 +50,23 @@ def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_
     for annot in file_annot_go:
         ent, go_term_list = annot[:-1].split('\t')
 
-        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url  are the iri of GO
+        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url  are the initials of GO
 
         for url_go_term in go_term_list.split(';'):
             Kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
                     rdflib.term.URIRef(url_go_term)))
 
-    print('.................KG created......................')
+    entities = open(entities_file, 'r')
+    for annot in entities:
+        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo/go
+        if url_ent not in ents:
+            ents.append(url_ent)
+        
+
+    print('..... KG created ..... ')
     file_annot_hpo.close()
     file_annot_go.close()
+    entities.close()
 
     return Kg, ents
 
@@ -74,22 +83,31 @@ def construct_1kg(ontology_file_path, annotations_file_path): #For one ontology 
     for annot in file_annot:
         ent, hp_term_list = annot[:-1].split('\t')
 
-        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url são are the iri of HPO/GO
-        ents.append(url_ent)
+        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url são are the initials of HPO
 
         for url_hp_term in hp_term_list.split(';'):
             kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
                     rdflib.term.URIRef(url_hp_term)))
+   
+    entities = open(entities_file, 'r')  
+    for annot in entities:
+        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo/go
+        if url_ent not in ents:
+            ents.append(url_ent)
 
-    print('.................KG created......................')
     file_annot.close()
+    entities.close()
+    
+    print('..... KG created ..... ')
     return kg, ents
 
+
 ########################################
-#####     RDF2Vec Embeddings       #####
+#####           RDF2Vec            #####
 ########################################
 def calculate_embeddings(Kg, ents, path_output, size_value, type_word2vec, n_walks):
     graph = kg.rdflib_to_kg(Kg)
+
     if type_word2vec == 'CBOW':
         sg_value = 0
     if type_word2vec == 'skip-gram':
@@ -125,30 +143,24 @@ vector_sizes = 200
 n_walks = 500
 types_word2vec = "skip-gram"
 path_output = "Run_"
-
+entities_file = "Entities.txt"
 
 def run_embedddings(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                    annotations_2_file_path, vector_sizes, types_word2vec, n_walks, path_output):
+                    annotations_2_file_path, vector_sizes, types_word2vec, n_walks, path_output, entities_file):
     Kg, ents = construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                            annotations_2_file_path)
-
+                            annotations_2_file_path, entities_file)
+    #ensure_dir(path_output)
     calculate_embeddings(Kg, ents, path_output, vector_sizes, types_word2vec, n_walks)
-
-ontology_1_file_path = "HPO.owl"
-ontology_2_file_path = "GO.owl"
-annotations_1_file_path = "annotations_HPO.tsv"
-annotations_2_file_path = "annotations_GO.tsv"
-run_embedddings(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                    annotations_2_file_path, vector_sizes, types_word2vec, n_walks, path_output)
 
 
 def run_embedddings_1kg(ontology_file_path, annotations_file_path,
-                     vector_sizes, types_word2vec, n_walks, path_output): #ONE ONTOLOGY
-    Kg, ents = construct_1kg(ontology_file_path,annotations_file_path)
-
+                     vector_sizes, types_word2vec, n_walks, path_output, entities_file): #ONE ONTOLOGY
+    Kg, ents = construct_1kg(ontology_file_path,annotations_file_path, entities_file)
+    #ensure_dir(path_output)
     calculate_embeddings(Kg, ents, path_output, vector_sizes, types_word2vec, n_walks)
 
-
+    
+#Example of running
 ontology_file_path = "HPO.owl"
 annotations_file_path = "annotations_HPO.tsv"
-run_embedddings_1kg(ontology_file_path, annotations_file_path, vector_sizes, types_word2vec, n_walks, path_output)
+run_embedddings_1kg(ontology_file_path, annotations_file_path, vector_sizes, types_word2vec, n_walks, path_output, entities_file)
