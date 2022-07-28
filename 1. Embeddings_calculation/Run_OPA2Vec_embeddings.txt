@@ -8,4 +8,4 @@ Download default pre-trained pubmed model and save it in opa2vec folder from htt
 
 Run in Command line inside the opa2vec folder:
 
-python3 runOPA2Vec.py -ontology "HPO.owl" -associations "AnnotationsHPO.tsv" -outfile "Opa2vec_embeddings.txt" -embedsize 200  -entities "Entities.txt"
+python3 runOPA2Vec.py -ontology "HPO.owl" -associations "AnnotationsHPO.tsv" -outfile "Opa2vec_embeddings.txt" -embedsize 200 
