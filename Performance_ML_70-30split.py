@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 '''
-    File name: Performance_ML.py
+    File name: Performance_ML_70-30split.py
     Authors: Susana Nunes, Rita T. Sousa, Catia Pesquita
     Python Version: 3.7
 '''
 import xgboost as xgb
 import numpy as np
+from sklearn import metrics
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
-from sklearn import metrics
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 
@@ -183,7 +183,7 @@ def performance_RandomForest(X_train, X_test, y_train, y_test, path_output_predi
 
 
 def performance_NayveBayes(X_train, X_test, y_train, y_test, path_output_predictions):
-    print('NAYVE BAYES INICIALIZED!!!!!!!!!!!!!!!!!')
+    print(' ....................... NAYVE BAYES INICIALIZED .......................')
     probs = []
     gnb_model = GaussianNB()
 
@@ -212,13 +212,13 @@ def performance_NayveBayes(X_train, X_test, y_train, y_test, path_output_predict
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc = predictions(predictions_test, y_test,
                                                                                             predictions_prob_test)
-    print('NAYVES BAYES FINALIZED !!!!!!!!!!!!!!!!!')
+    print('....................... NAYVES BAYES FINALIZED .......................')
 
     return waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc
 
 
 def performance_MLP(X_train, X_test, y_train, y_test, path_output_predictions):
-    print('MULTI-LAYER PERCEPTRON INICIALIZED!!!!!!!!!!!!!!!!!')
+    print('....................... MULTI-LAYER PERCEPTRON INICIALIZED .......................')
     probs = []
     mlp_model = MLPClassifier()
 
@@ -257,7 +257,7 @@ def performance_MLP(X_train, X_test, y_train, y_test, path_output_predictions):
     waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc = predictions(predictions_test, y_test,
                                                                                             predictions_prob_test)
 
-    print('MULTI-LAYER PERCEPTRON FINALIZED!!!!!!!!!!!!!!!!!')
+    print('....................... MULTI-LAYER PERCEPTRON FINALIZED .......................')
     return waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc, parameters
 
 
@@ -269,8 +269,8 @@ operations_list = [('Data_Concatenated.csv', 'Concatenation'), ('Data_Average.cs
                    ('Data_Weighted_L1.csv', 'Weighted-L1'), ('Data_Weighted_L2.csv', 'Weighted-L2')]
 # RandomForest
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'RandomForest_Run_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, recall, \
@@ -289,8 +289,8 @@ for operation in operations_list:  # Embedding Operation
 
 # XGBoost
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'XGBoost_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, \
@@ -309,8 +309,8 @@ for operation in operations_list:  # Embedding Operation
 
 #NayveBayes
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'NayvesBayes_Run_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, recall, \
@@ -329,8 +329,8 @@ for operation in operations_list:  # Embedding Operation
 
 # Multi-Layer Perceptron
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'MLP_Run_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, \
