@@ -211,7 +211,7 @@ def weighted_L2_operation(pairs):
 
 
 # Calculate Cosine Similarity between the two embeddings
-def Cosine_Similarity_operation(pairs):
+def cosine_similarity_operation(pairs):
     print('................. Cosine operation .................')
     cosine_input = []
 
@@ -248,7 +248,7 @@ def run_opa2vec_operations(file_dataset_path, file_embeddings_path):
     hadamard_operation(pairs)
     weighted_L1_operation(pairs)
     weighted_L2_operation(pairs)
-    Cosine_Similarity_operation(pairs)
+    cosine_similarity_operation(pairs)
 
 
 def run_other_operations(file_dataset_path, file_embeddings_path):
@@ -261,7 +261,7 @@ def run_other_operations(file_dataset_path, file_embeddings_path):
     hadamard_operation(pairs)
     weighted_L1_operation(pairs)
     weighted_L2_operation(pairs)
-    Cosine_Similarity_operation(pairs)
+    cosine_similarity_operation(pairs)
 
 
 file_dataset_path = "Dataset_Pairs_Label.csv"
