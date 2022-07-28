@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 '''
-    File name: Run_KG_TransE-DistMult.py
+    File name: Process_KG_TransE-DistMult.py
     Authors: Susana Nunes, Rita T. Sousa, Catia Pesquita
     Python Version: 3.7
 '''
@@ -16,9 +16,8 @@ from rdflib.namespace import RDF, OWL
 def process_dataset(file_dataset_path):
     """
     Process a dataset file.
-    :param file_dataset_path: dataset file path with the correspondent entity pairs. The format of each line of the dataset files is "Ent1 Ent2 Proxy";
-    :param type_data: options are "Prot" for protein datasets and "Gene" for gene datasets;
-    :return: one dictionary and one list. "dict_labels" is a dictionary with entity pairs and respective similarity proxy. "ents" is a list of entities for which embeddings will be computed.
+    :param file_dataset_path: dataset file path with the correspondent entity pairs. The format of each line of the dataset files is "Nr Ent1 Ent2 label";
+    :return: one dictionary and one list. "dict_labels" is a dictionary with entity pairs and respective label. "ents" is a list of entities for which embeddings will be computed.
     """
     dataset = open(file_dataset_path, 'r')
     dict_labels = {}
@@ -47,14 +46,12 @@ def buildGraph(ontology_1_file_path, ontology_2_file_path, annotations_1_file_pa
     Kg.parse(ontology_1_file_path, format='xml')
     Kg.parse(ontology_2_file_path, format='xml')
 
-    ents = []  # list of genes and diseases - entities for which I want embeddings
-
     file_annot_hpo = open(annotations_1_file_path, 'r')
     for annot in file_annot_hpo:
         ent, hpo_term_list = annot[:-1].split('\t')
 
         url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo
-        ents.append(url_ent)
+        
 
         for url_hpo_term in hpo_term_list.split(';'):
             Kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
@@ -80,14 +77,12 @@ def buildGraph_1onto(ontology_file_path, annotations_file_path): #For one ontolo
     kg = rdflib.Graph()
     kg.parse(ontology_file_path, format='xml')
 
-    ents = []  # list of genes and diseases - entities for which I want embeddings
     file_annot = open(annotations_file_path, 'r')
 
     for annot in file_annot:
         ent, hp_term_list = annot[:-1].split('\t')
 
         url_ent = "http://purl.obolibrary.org/obo/" + ent  # url são are the initials of HPO
-        ents.append(url_ent)
 
         for url_hp_term in hp_term_list.split(';'):
             kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
