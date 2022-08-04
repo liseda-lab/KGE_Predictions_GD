@@ -53,7 +53,8 @@ def process_dataset_file(file_performance_path, file_output):
         else:
             print('ERROR:wrong number of recall values')
             numbers = False
-
+        numbers = False
+        
         file_results = open(file_output, 'w')
         file_results.write('Median WAF: ' + str(waf).replace('.', ',') + '\n')
         file_results.write('Median Precision: ' + str(precision).replace('.', ',') + '\n')
