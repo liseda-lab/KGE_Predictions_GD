@@ -57,7 +57,7 @@ def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_
                     rdflib.term.URIRef(url_go_term)))
 
     entities = open(entities_file, 'r')
-    for annot in entities:
+    for ent in entities:
         url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo/go
         if url_ent not in ents:
             ents.append(url_ent)
@@ -90,7 +90,7 @@ def construct_1kg(ontology_file_path, annotations_file_path): #For one ontology 
                     rdflib.term.URIRef(url_hp_term)))
    
     entities = open(entities_file, 'r')  
-    for annot in entities:
+    for ent in entities:
         url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo/go
         if url_ent not in ents:
             ents.append(url_ent)
