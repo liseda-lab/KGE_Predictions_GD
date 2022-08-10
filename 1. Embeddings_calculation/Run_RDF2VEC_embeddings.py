@@ -34,8 +34,8 @@ def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_
     Kg.parse(ontology_1_file_path, format='xml')
     Kg.parse(ontology_2_file_path, format='xml')
 
-    ents = []  # list of genes and diseases - entities for which I want embeddings
-
+    ents = [line.strip() for line in open(entities_file).readlines()] # list of genes and diseases - entities for which I want embeddings 
+    
     file_annot_hpo = open(annotations_1_file_path, 'r')
     for annot in file_annot_hpo:
         ent, hpo_term_list = annot[:-1].split('\t')
@@ -54,20 +54,11 @@ def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_
 
         for url_go_term in go_term_list.split(';'):
             Kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
-                    rdflib.term.URIRef(url_go_term)))
-
-    entities = open(entities_file, 'r')
-    for ent in entities:
-        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo/go
-        if url_ent not in ents:
-            ents.append(url_ent)
-        
+                    rdflib.term.URIRef(url_go_term)))        
 
     print('..... KG created ..... ')
     file_annot_hpo.close()
     file_annot_go.close()
-    entities.close()
-
     return Kg, ents
 
 ###############################################
@@ -77,7 +68,8 @@ def construct_1kg(ontology_file_path, annotations_file_path): #For one ontology 
     kg = rdflib.Graph()
     kg.parse(ontology_file_path, format='xml')
 
-    ents = []  # list of genes and diseases - entities for which I want embeddings
+    ents = [line.strip() for line in open(entities_file).readlines()] # list of genes and diseases - entities for which I want embeddings 
+
     file_annot = open(annotations_file_path, 'r')
 
     for annot in file_annot:
@@ -88,15 +80,8 @@ def construct_1kg(ontology_file_path, annotations_file_path): #For one ontology 
         for url_hp_term in hp_term_list.split(';'):
             kg.add((rdflib.term.URIRef(url_ent), rdflib.term.URIRef('http://purl.obolibrary.org/obo/hasAnnotation'),
                     rdflib.term.URIRef(url_hp_term)))
-   
-    entities = open(entities_file, 'r')  
-    for ent in entities:
-        url_ent = "http://purl.obolibrary.org/obo/" + ent  # url are the initials of hpo/go
-        if url_ent not in ents:
-            ents.append(url_ent)
 
     file_annot.close()
-    entities.close()
     
     print('..... KG created ..... ')
     return kg, ents
