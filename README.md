@@ -6,7 +6,7 @@ Ontology-based approaches for predicting gene-disease associations include the m
 - This document provides the implementation described in the **short paper**: http://arxiv.org/abs/2105.04944
 
 ## Dataset and Annotations
-__Dataset_Pairs_Label.csv__ has a total of 2716 genes, 1807 diseases, and 8189 disease-genes relations from DisGeNET and 8189 negative samples. GO annotations were downloaded from Gene Ontology Annotation (GOA) database for the human species. HP annotations were downloaded from the HP database, providing links between genes or diseases to HP terms. 
+__Dataset_Pairs_Label.csv__ has a total of 2716 genes, 1807 diseases, and 8189 disease-genes relations from DisGeNET and 8189 negative samples. GO annotations were downloaded from Gene Ontology Annotation (GOA) database for the human species. HP annotations were downloaded from the HP database, providing links between genes or diseases to HP terms.  The original file used of Disgenet __curated_Disgenet.csv__
 
 ## Indexes Creation
 - We performed a stratified ten-fold cross-validation (Indexes_10Fold folder) being that the same folds and, for each fold, the Weighted Average of F-measures (WAF) of classifications were assessed and reported in the form of a median with __Median-Calculation.py__. 
