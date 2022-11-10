@@ -68,7 +68,7 @@ Grid search was employed in both  __Performance_ML_70-30split.py__ and __Perform
 
 
 ## HOW TO 
-In the folder __DEMO__, we provide a step by __Step_by_Step.pdf__ with guiding steps for a successful implementation. 
+In the folder __DEMO__, we provide a step by __Step_by_Step.pdf__ with guiding steps for a successful implementation. (... IN CONSTRUCTION ...)
 
 ## Authors
 - __Susana Nunes__
