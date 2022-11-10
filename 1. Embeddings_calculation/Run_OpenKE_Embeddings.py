@@ -233,10 +233,10 @@ def write_embeddings(path_model_json, path_embeddings_output, ents, dic_nodes):
 
 
 
-def construct_embeddings(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
+def construct_embeddings_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                  annotations_2_file_path,  dataset_file, model_embedding, n_embeddings, path_embeddings_output):
 
-    Graph = buildGraph(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
+    Graph = buildGraph_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                  annotations_2_file_path)
     dic_nodes, dic_relations, list_triples = buildIds(Graph)
     dict_labels, ents = process_dataset(dataset_file)
@@ -266,28 +266,24 @@ def construct_embeddings_1onto(ontology_file_path, annotations_file_path,  datas
 ##    Calling Functions    ##
 #############################
 
+
 if __name__ == "__main__":
-    ontology_1_file_path = "HPO-full.owl"
-    ontology_2_file_path = "GO-full.owl"
-    annotations_1_file_path = "annotations_HPO.tsv"
-    annotations_2_file_path = "annotations_GO.tsv"
+    #Example of running KG with one ontology for distMult
     ontology_file_path = "HPO-full.owl"
     annotations_file_path = "annotations_HPO.tsv"
-    dataset_file = "Pairs_Label.csv"
-    #model_embedding = "TransE"
-    model_embedding = "distMult"
+    entities_file = "OpenKE_entities.csv"
     n_embeddings = 200
-    #path_embeddings_output = "/output/Run_HPOfull_Embeddings_TransE"
+    
+    model_embedding = "distMult"
+    #model_embedding = "TransE"
+    
+   
     path_embeddings_output = "/output/Run_HPOfull_Embeddings_DistMult"
+    #path_embeddings_output = "/output/Run_HPOfull_Embeddings_TransE"
 
-
-    construct_embeddings(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                    annotations_2_file_path, dataset_file, model_embedding, n_embeddings,
-                         path_embeddings_output)
 
     construct_embeddings_1onto(ontology_file_path, annotations_file_path, dataset_file, model_embedding, n_embeddings,
                          path_embeddings_output)
-
 
 
 
