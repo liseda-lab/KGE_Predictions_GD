@@ -124,12 +124,7 @@ def calculate_embeddings(Kg, ents, path_output, size_value, type_word2vec, n_wal
 ##############################################
 ##              Run Embeddings              ##
 ##############################################
-vector_sizes = 200
-n_walks = 500
-types_word2vec = "skip-gram"
-path_output = "Run_"
-#File with one entity per line for instance C00001
-entities_file = "Entities.txt"
+
 
 def run_embedddings_2kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                     annotations_2_file_path, vector_sizes, types_word2vec, n_walks, path_output, entities_file):
@@ -147,6 +142,11 @@ def run_embedddings_1kg(ontology_file_path, annotations_file_path,
 
     
 #Example of running
+vector_sizes = 200
+n_walks = 500
+types_word2vec = "skip-gram"
+path_output = "Run_"
+entities_file = "Entities.txt" #File with one entity per line 
 ontology_file_path = "HPO.owl"
 annotations_file_path = "annotations_HPO.tsv"
 run_embedddings_1kg(ontology_file_path, annotations_file_path, vector_sizes, types_word2vec, n_walks, path_output, entities_file)
