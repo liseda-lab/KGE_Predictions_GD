@@ -28,7 +28,7 @@ from pyrdf2vec.walkers import WeisfeilerLehmanWalker
 #################################################
 #####     Create KG with 2 ontologies       #####
 #################################################
-def construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
+def construct_2kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                  annotations_2_file_path, entities_file):
     Kg = rdflib.Graph()
     Kg.parse(ontology_1_file_path, format='xml')
@@ -131,9 +131,9 @@ path_output = "Run_"
 #File with one entity per line for instance C00001
 entities_file = "Entities.txt"
 
-def run_embedddings(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
+def run_embedddings_2kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                     annotations_2_file_path, vector_sizes, types_word2vec, n_walks, path_output, entities_file):
-    Kg, ents = construct_kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
+    Kg, ents = construct_2kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                             annotations_2_file_path, entities_file)
     #ensure_dir(path_output)
     calculate_embeddings(Kg, ents, path_output, vector_sizes, types_word2vec, n_walks)
