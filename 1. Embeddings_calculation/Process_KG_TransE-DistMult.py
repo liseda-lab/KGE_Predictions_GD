@@ -39,7 +39,7 @@ def process_dataset(file_dataset_path):
     dataset.close()
     return dict_labels, ents
 
-def buildGraph(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
+def buildGraph_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                  annotations_2_file_path): #For 2 ontologies
 
     Kg = rdflib.Graph()
