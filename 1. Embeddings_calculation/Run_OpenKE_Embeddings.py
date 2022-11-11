@@ -21,14 +21,14 @@ from Run_KG_TransE-DistMult import *
 #####################
 ##    Functions    ##
 #####################
-def construct_model(dic_nodes, dic_relations, list_triples, path_output, n_embeddings, model_embedding):
+def construct_model(dic_nodes, dic_relations, list_triples, path_output,  vector_size, model_embedding):
     """
     Construct and embedding model and compute embeddings.
     :param dic_nodes: dictionary with KG nodes and respective ids;
     :param dic_relations: dictionary with type of relations in the KG and respective ids;
     :param list_triples: list with triples of the KG;
     :param path_output: OpenKE path;
-    :param n_embeddings: dimension of embedding vectors;
+    :param vector_size: dimension of embedding vectors;
     :param models_embedding: embedding model;
     :return: write a json file with the embeddings for all nodes and relations.
     """
@@ -59,7 +59,7 @@ def construct_model(dic_nodes, dic_relations, list_triples, path_output, n_embed
     # Input training files from data folder.
     con = config.Config()
     con.set_in_path(path_output)
-    con.set_dimension(n_embeddings)
+    con.set_dimension(vector_size)
 
     print(
         '--------------------------------------------------------------------------------------------------------------------')
@@ -234,29 +234,28 @@ def write_embeddings(path_model_json, path_embeddings_output, ents, dic_nodes):
 
 
 def construct_embeddings_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                 annotations_2_file_path,  dataset_file, model_embedding, n_embeddings, path_embeddings_output):
+                 annotations_2_file_path,  entities_file, model_embedding, vector_size, path_embeddings_output):
 
-    Graph = buildGraph_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
-                 annotations_2_file_path)
+    Graph = buildGraph_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path, annotations_2_file_path)
     dic_nodes, dic_relations, list_triples = buildIds(Graph)
-    dict_labels, ents = process_dataset(dataset_file)
+    dict_labels, ents = process_dataset(entities_file)
 
     path_output = './OpenKE/'
     path_model_json = './OpenKE/' + model_embedding + "/embeddings.vec.json"
 
-    construct_model(dic_nodes, dic_relations, list_triples, path_output, n_embeddings, model_embedding)
+    construct_model(dic_nodes, dic_relations, list_triples, path_output, vector_size, model_embedding)
     write_embeddings(path_model_json, path_embeddings_output, ents, dic_nodes)
 
-def construct_embeddings_1onto(ontology_file_path, annotations_file_path,  dataset_file, model_embedding, n_embeddings, path_embeddings_output):
+def construct_embeddings_1onto(ontology_file_path, annotations_file_path,  entities_file, model_embedding, vector_size, path_embeddings_output):
 
     Graph = buildGraph_1onto(ontology_file_path, annotations_file_path)
     dic_nodes, dic_relations, list_triples = buildIds(Graph)
-    dict_labels, ents = process_dataset(dataset_file)
+    dict_labels, ents = process_dataset(entities_file)
 
     path_output = './OpenKE/'
     path_model_json = './OpenKE/' + model_embedding + "/embeddings.vec.json"
 
-    construct_model(dic_nodes, dic_relations, list_triples, path_output, n_embeddings, model_embedding)
+    construct_model(dic_nodes, dic_relations, list_triples, path_output, vector_size, model_embedding)
     write_embeddings(path_model_json, path_embeddings_output, ents, dic_nodes)
 
 
@@ -268,11 +267,12 @@ def construct_embeddings_1onto(ontology_file_path, annotations_file_path,  datas
 
 
 if __name__ == "__main__":
+    
     #Example of running KG with one ontology for distMult
     ontology_file_path = "HPO-full.owl"
     annotations_file_path = "annotations_HPO.tsv"
     entities_file = "OpenKE_entities.csv"
-    n_embeddings = 200
+    vector_size = 200
     
     model_embedding = "distMult"
     #model_embedding = "TransE"
@@ -282,8 +282,7 @@ if __name__ == "__main__":
     #path_embeddings_output = "/output/Run_HPOfull_Embeddings_TransE"
 
 
-    construct_embeddings_1onto(ontology_file_path, annotations_file_path, dataset_file, model_embedding, n_embeddings,
-                         path_embeddings_output)
+    construct_embeddings_1onto(ontology_file_path, annotations_file_path, entities_file, model_embedding, vector_size, path_embeddings_output)
 
 
 
