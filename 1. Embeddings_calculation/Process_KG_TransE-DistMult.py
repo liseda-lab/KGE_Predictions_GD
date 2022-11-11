@@ -16,20 +16,18 @@ from rdflib.namespace import RDF, OWL
 def process_dataset(file_dataset_path):
     """
     Process a dataset file.
-    :param file_dataset_path: dataset file path with the correspondent entity pairs. The format of each line of the dataset files is "Nr Ent1 Ent2 label";
-    :return: one dictionary and one list. "dict_labels" is a dictionary with entity pairs and respective label. "ents" is a list of entities for which embeddings will be computed.
+    :param file_dataset_path: dataset file path with the correspondent entity pairs. The format of each line of the dataset files is "Ent1 Ent2";
+    :return one list: "ents" is a list of entities for which embeddings will be computed.
     """
     dataset = open(file_dataset_path, 'r')
     dict_labels = {}
     ents =[]
 
     for line in dataset[1:]:
-        nr, gene, disease, label = line.strip(";\n").split(";")
+        gene, disease = line.strip(";\n").split(";")
 
         url_ent1 = "http://purl.obolibrary.org/obo/" + gene
         url_ent2 = "http://purl.obolibrary.org/obo/" + disease
-
-        dict_labels[(url_ent1, url_ent2)] = label
 
         if url_ent1 not in ents:
             ents.append(url_ent1)
@@ -37,7 +35,7 @@ def process_dataset(file_dataset_path):
             ents.append(url_ent2)
 
     dataset.close()
-    return dict_labels, ents
+    return ents
 
 def buildGraph_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path,
                  annotations_2_file_path): #For 2 ontologies
