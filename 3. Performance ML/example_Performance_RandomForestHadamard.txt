@@ -1,0 +1,8 @@
+WAF: 0.7199112889864958
+fmeasure noninteract: 0.7586700035752593
+fmeasure interact: 0.6811525743977326
+Precision: 0.8114800225098481
+Recall: 0.5868945868945868
+Accuracy: 0.7252747252747253
+Auc: 0.7912458966590021
+Best parameters set found on development set:{'max_depth': None, 'n_estimators': 200}
