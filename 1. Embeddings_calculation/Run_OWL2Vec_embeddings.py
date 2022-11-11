@@ -286,6 +286,8 @@ epoch = 100
 pre_train_model= "~/w2v_model/enwiki_model/word2vec_gensim"
 samplers = "uniform"
 IC_dict = {}
+
+#### CHANGE THE PRE-ENTITY FILE AND THE ONTOLOGY FILE #####
 pre_entity_file = "entities.txt"
 entities = [line.strip() for line in open(pre_entity_file).readlines()]
 ontology_file = "HPO.owl"
