@@ -1,0 +1,9 @@
+Measure: BMA_Seco2004
+Maximum cutoff value: 0.43
+WAF in Test Set: 0.6838472200269912
+fmeasure noninteract: 0.7274678111587982
+fmeasure interact: 0.6402266288951841
+Precision: 0.7622259696458684
+Recall: 0.5518925518925519
+Accuracy: 0.6898656898656899
+Auc: 0.7254434391186528
