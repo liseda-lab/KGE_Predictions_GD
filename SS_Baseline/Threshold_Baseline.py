@@ -151,9 +151,9 @@ file_data = 'SSMC_output.csv'
 
 for measure in range(0, 6):  # measure used
     Xtrain, Ytrain = create_X_and_Y_lists(file_data,
-                                          'Indexes_70-30_split/PairsIndexes__crossvalidationTrain.txt')
+                                          'Indexes_split/PairsIndexes__crossvalidationTrain.txt')
     Xtest, Ytest = create_X_and_Y_lists(file_data,
-                                        'Indexes_70-30_split/PairsIndexes__crossvalidationTest.txt')
+                                        'Indexes_split/PairsIndexes__crossvalidationTest.txt')
     max_c, waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc = performance_baseline(
         Xtrain, Xtest, Ytrain, Ytest, measure)
 
