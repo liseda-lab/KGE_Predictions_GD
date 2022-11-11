@@ -3,6 +3,7 @@
     File name: CS_threshold.py
     Authors: Susana Nunes, Rita T. Sousa, Catia Pesquita
     Python Version: 3.7
+    This script is ready for a 70-30 split 
 '''
 import numpy as np
 from sklearn import metrics
@@ -14,8 +15,8 @@ from operator import itemgetter
 ################################################
 
 # CSV file reading function
-def process_dataset_file(file_dataset_path):
-    dataset = open(file_dataset_path, 'r')
+def process_measure_file(file_measure_path):
+    dataset = open(file_measure_path, 'r')
     data = dataset.readlines()
     csmeasure = []
     labels = []
@@ -40,10 +41,10 @@ def process_dataset_file(file_dataset_path):
 ################################################
 
 # Creates X train/test and Y train/test:
-def create_X_and_Y_lists(file_dataset_path, file_indexes_path):
+def create_X_and_Y_lists(file_measure_path, file_indexes_path):
     index_file = open(file_indexes_path, 'r')
     indexes = index_file.readlines()
-    labels_list, pairs, labels, csmeasure, cs = process_dataset_file(file_dataset_path)
+    labels_list, pairs, labels, csmeasure, cs = process_measure_file(file_measure_path)
     indexesList = []
 
     for index in indexes:
@@ -83,12 +84,12 @@ def predictions(predicted_labels, list_labels, ssm_values):
     return waf_measure, Fmeasure_noninteract, Fmeasure_interact, Precision, Recall, Accuracy, Auc
 
 
-################################################
-##         BASELINE PERFORMANCES              ##
-################################################
+##########################################################
+##         Consine Similarity PERFORMANCES              ##
+##########################################################
 
 # Function that calls predictions and labels_prediction_with_cuttof_baselines
-def performance_baseline(X_train, X_test, y_train, y_test):
+def performance_cosineS(X_train, X_test, y_train, y_test):
     cutoffs = list(np.arange(0, 1, 0.01))
     WAFs_TrainingSet = {}
     for cutoff in cutoffs:
@@ -121,27 +122,27 @@ def performance_baseline(X_train, X_test, y_train, y_test):
 ##             RUN PERFORMANCES               ##
 ################################################
 
-# Creation of the partitions and performance files for each measure
+# Creation of the train and test 
+Xtrain, Ytrain = create_X_and_Y_lists('Data_Cosine_Similarity.csv',
+                                          'Indexes_split/PairsIndexes__splitTrain.txt')
+Xtest, Ytest = create_X_and_Y_lists('Data_Cosine_Similarity.csv',
+                                        'Indexes_split/PairsIndexes__splitTest.txt')
 
-for i in range(1, 2):  # Partition
-    Xtrain, Ytrain = create_X_and_Y_lists('Data_Cosine_Similarity.csv',
-                                          'Indexes_split/PairsIndexes__crossvalidationTrain' + str(i) + '.txt')
-    Xtest, Ytest = create_X_and_Y_lists('Data_Cosine_Similarity.csv',
-                                        'Indexes_split/PairsIndexes__crossvalidationTest' + str(i) + '.txt')
-    max_c, waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc = performance_baseline(
+# performance calculation for cosine similarity
+max_c, waf, fmeasure_noninteract, fmeasure_interact, precision, recall, accuracy, auc = performance_cosineS(
         Xtrain, Xtest, Ytrain, Ytest)
 
-    file_cuttof = open(
-        'Performance_Baseline_Measure_Cosine_Similarity.txt', 'a')
+file_cuttof = open(
+        'Performance_Measure_Cosine_Similarity.txt', 'a')
 
-    file_cuttof.write('Split 70/30'  + '\n')
-    file_cuttof.write('Maximum cutoff value: ' + str(max_c) + '\n')
-    file_cuttof.write('WAF in Test Set: ' + str(waf) + '\n')
-    file_cuttof.write('fmeasure noninteract: ' + str(fmeasure_noninteract) + '\n')
-    file_cuttof.write('fmeasure interact: ' + str(fmeasure_interact) + '\n')
-    file_cuttof.write('Precision: ' + str(precision) + '\n')
-    file_cuttof.write('Recall: ' + str(recall) + '\n')
-    file_cuttof.write('Accuracy: ' + str(accuracy) + '\n')
-    file_cuttof.write('Auc: ' + str(auc) + '\n')
+file_cuttof.write('Split 70/30'  + '\n')
+file_cuttof.write('Maximum cutoff value: ' + str(max_c) + '\n')
+file_cuttof.write('WAF in Test Set: ' + str(waf) + '\n')
+file_cuttof.write('fmeasure noninteract: ' + str(fmeasure_noninteract) + '\n')
+file_cuttof.write('fmeasure interact: ' + str(fmeasure_interact) + '\n')
+file_cuttof.write('Precision: ' + str(precision) + '\n')
+file_cuttof.write('Recall: ' + str(recall) + '\n')
+file_cuttof.write('Accuracy: ' + str(accuracy) + '\n')
+file_cuttof.write('Auc: ' + str(auc) + '\n')    
 
-    file_cuttof.close()
+file_cuttof.close()    
