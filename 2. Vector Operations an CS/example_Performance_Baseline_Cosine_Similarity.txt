@@ -1,3 +1,4 @@
+Split 70/30
 Maximum cutoff value: 0.37
 WAF in Test Set: 0.6716639072847682
 fmeasure noninteract: 0.7175
