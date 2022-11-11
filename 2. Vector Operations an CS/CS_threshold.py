@@ -123,9 +123,9 @@ def performance_cosineS(X_train, X_test, y_train, y_test):
 ################################################
 
 # Creation of the train and test 
-Xtrain, Ytrain = create_X_and_Y_lists('Data_Cosine_Similarity.csv',
+Xtrain, Ytrain = create_X_and_Y_lists('output_operator.csv',
                                           'Indexes_split/PairsIndexes__splitTrain.txt')
-Xtest, Ytest = create_X_and_Y_lists('Data_Cosine_Similarity.csv',
+Xtest, Ytest = create_X_and_Y_lists('output_operator.csv',
                                         'Indexes_split/PairsIndexes__splitTest.txt')
 
 # performance calculation for cosine similarity
