@@ -238,7 +238,7 @@ def construct_embeddings_2ontos(ontology_1_file_path, ontology_2_file_path, anno
 
     Graph = buildGraph_2ontos(ontology_1_file_path, ontology_2_file_path, annotations_1_file_path, annotations_2_file_path)
     dic_nodes, dic_relations, list_triples = buildIds(Graph)
-    dict_labels, ents = process_dataset(entities_file)
+    ents = process_dataset(entities_file)
 
     path_output = './OpenKE/'
     path_model_json = './OpenKE/' + model_embedding + "/embeddings.vec.json"
@@ -250,7 +250,7 @@ def construct_embeddings_1onto(ontology_file_path, annotations_file_path,  entit
 
     Graph = buildGraph_1onto(ontology_file_path, annotations_file_path)
     dic_nodes, dic_relations, list_triples = buildIds(Graph)
-    dict_labels, ents = process_dataset(entities_file)
+    ents = process_dataset(entities_file)
 
     path_output = './OpenKE/'
     path_model_json = './OpenKE/' + model_embedding + "/embeddings.vec.json"
