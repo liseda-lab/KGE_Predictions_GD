@@ -1,0 +1,9 @@
+PARTITION 1
+Maximum cutoff value: 0.37
+WAF in Test Set: 0.6716639072847682
+fmeasure noninteract: 0.7175
+fmeasure interact: 0.6258278145695364
+Precision: 0.7470355731225297
+Recall: 0.5384615384615384
+Accuracy: 0.6780626780626781
+Auc: 0.7313287113856914
