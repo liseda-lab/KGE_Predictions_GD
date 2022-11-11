@@ -269,8 +269,8 @@ operations_list = [('Data_Concatenated.csv', 'Concatenation'), ('Data_Average.cs
                    ('Data_Weighted_L1.csv', 'Weighted-L1'), ('Data_Weighted_L2.csv', 'Weighted-L2')]
 # RandomForest
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'RandomForest_Run_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, recall, \
@@ -289,8 +289,8 @@ for operation in operations_list:  # Embedding Operation
 
 # XGBoost
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'XGBoost_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, \
@@ -309,8 +309,8 @@ for operation in operations_list:  # Embedding Operation
 
 #NayveBayes
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_splitt/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'NayvesBayes_Run_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, precision, recall, \
@@ -329,8 +329,8 @@ for operation in operations_list:  # Embedding Operation
 
 # Multi-Layer Perceptron
 for operation in operations_list:  # Embedding Operation
-    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTrain.txt')
-    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_70-30_split/PairsIndexes__splitTest.txt')
+    Xtrain, Ytrain = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTrain.txt')
+    Xtest, Ytest = create_X_and_Y_lists(operation[0], 'Indexes_split/PairsIndexes__splitTest.txt')
     path_output_predictions = 'MLP_Run_' + str(operation[1])
 
     waf, fmeasure_noninteract, fmeasure_interact, \
