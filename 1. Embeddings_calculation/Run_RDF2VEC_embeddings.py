@@ -120,7 +120,6 @@ def calculate_embeddings(Kg, ents, path_output, size_value, type_word2vec, n_wal
             file.flush()
         file.write("}")
 
-
 ##############################################
 ##              Run Embeddings              ##
 ##############################################
@@ -132,6 +131,8 @@ def run_embedddings_2kg(ontology_1_file_path, ontology_2_file_path, annotations_
                             annotations_2_file_path, entities_file)
     #ensure_dir(path_output)
     calculate_embeddings(Kg, ents, path_output, vector_sizes, types_word2vec, n_walks)
+    print('..... embeddings calculated ..... ')
+
 
 
 def run_embedddings_1kg(ontology_file_path, annotations_file_path,
@@ -139,6 +140,7 @@ def run_embedddings_1kg(ontology_file_path, annotations_file_path,
     Kg, ents = construct_1kg(ontology_file_path,annotations_file_path, entities_file)
     #ensure_dir(path_output)
     calculate_embeddings(Kg, ents, path_output, vector_sizes, types_word2vec, n_walks)
+    print('..... embeddings calculated ..... ')
 
     
 #Example of running
