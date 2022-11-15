@@ -64,7 +64,7 @@ def construct_2kg(ontology_1_file_path, ontology_2_file_path, annotations_1_file
 ###############################################
 #####     Create KG with 1 ontology       #####
 ###############################################
-def construct_1kg(ontology_file_path, annotations_file_path): #For one ontology only
+def construct_1kg(ontology_file_path,annotations_file_path, entities_file): #For one ontology only
     kg = rdflib.Graph()
     kg.parse(ontology_file_path, format='xml')
 
