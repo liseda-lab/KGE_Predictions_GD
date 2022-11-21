@@ -69,8 +69,13 @@ To use the 70-30 split:
 Grid search was employed in both  __Performance_ML_70-30split.py__ and __Performance_ML_10fold.py__ to obtain optimal parameters for RF, XGB, and MLP.
 
 
+##Ontology Download 
+- Human Phenotype Ontology: https://hpo.jax.org/app/data/ontology
+- Gene Ontology:  http://geneontology.org/docs/download-ontology/
+
 ## HOW TO 
-In the folder __DEMO__, we provide a step by __Step_by_Step.pdf__ with guiding steps for a successful implementation. (... IN CONSTRUCTION ...)
+In the folder __DEMO__, we provide a step by __Step_by_Step.pdf__ with guiding steps for a successful implementation.
+
 
 ## Authors
 - __Susana Nunes__
