@@ -16,7 +16,7 @@ import rdflib
 import sys
 from OpenKE import config
 from OpenKE import models
-from Run_KG_TransE-DistMult import *
+from Process_KG_TransE-DistMult import *
 
 #####################
 ##    Functions    ##
