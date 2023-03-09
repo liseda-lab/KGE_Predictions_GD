@@ -209,7 +209,7 @@ def write_embeddings(path_model_json, path_embeddings_output, ents, dic_nodes):
     embeddings = json.loads(data)
     embeddings_file.close()
 
-    ensure_dir(path_embeddings_output)
+    #ensure_dir(path_embeddings_output)
     with open(path_embeddings_output, 'w') as file_output:
         file_output.write("{")
         first = False
